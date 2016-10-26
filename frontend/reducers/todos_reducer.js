@@ -2,17 +2,23 @@ import merge from 'lodash/merge';
 import { fetchTodos } from '../util/todo_api_utils';
 
 
-import { RECEIVE_TODOS, REQUEST_TODOS } from '../actions/todo_actions';
+import { RECEIVE_TODOS, RECEIVE_TODO }
+  from '../actions/todo_actions';
 
 const TodosReducer = (state = {}, action) => {
   Object.freeze(state);
+  let newState = {};
 
   switch(action.type) {
     case RECEIVE_TODOS:
-      let newState = {};
       // *1
       // return merge(newState, action.todos);
       action.todos.forEach(todo => {newState[todo.id] = todo;});
+      return newState;
+    case RECEIVE_TODO:
+      newState = merge({}, state);
+      const todo = action.todo;
+      newState[todo.id] = todo;
       return newState;
     default:
       return state;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { requestTodos } from './actions/todo_actions';
+import { requestTodos, createTodo } from './actions/todo_actions';
 import Root from './components/root';
 
 
@@ -21,4 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
 */
   window.requestTodos = requestTodos;
   window.store = store;
+  window.createTodo = createTodo;
 });
